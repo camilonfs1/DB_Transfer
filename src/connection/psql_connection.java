@@ -15,6 +15,7 @@ import model.table_destini;
 
 
 public class psql_connection {
+	
 
 	public static void write(table_destini tables_desti,ArrayList<String> lines) {
 		String url = "jdbc:postgresql://localhost:5432/postgres";
@@ -22,6 +23,8 @@ public class psql_connection {
         String password = "123456";		
         
 		ArrayList<String> data= new ArrayList();
+
+		
 		
 		for (int x= 0; x<= lines.size()-1; x ++) {
 			String[] parts = ((String) lines.get(x)).split(",");
@@ -45,13 +48,23 @@ public class psql_connection {
 		
 		String query = "INSERT INTO "+ Objtable.getName() +"VALUES ("+ interroga+") ON CONFLICT DO NOTHING";
 		
+		
+		
 		int aux = 1;
 		int aux_data = 0;
 		
 		try(Connection con = DriverManager.getConnection(url, user, password);			
-			PreparedStatement pst = con.prepareStatement(query);) {		
+			PreparedStatement pst = con.prepareStatement(query);) {	
+			int sizedata=0;
+			if(data.size()>1) {
+				
+			}else if(data.size()==2) {
+				
+			}
+			
 			for(int i=0;i<=data.size()/Objtable.getColumns().size()-1;i++) {
 				aux = 1;
+				
 				for(int x=0;x<=Objtable.getColumns().size()-1;x++) {
 					col= Objtable.getColumns().get(x);						 
 					if(col.getType().equals("int")) {
@@ -63,8 +76,8 @@ public class psql_connection {
 						 aux = aux+1;
 					 } 
 					 if (x==Objtable.getColumns().size()-1) {	
-						 pst.executeUpdate();
-					 }
+						 pst.executeUpdate();	
+					 }					
 					 aux_data=aux_data+1;										
 				 }
 			}			

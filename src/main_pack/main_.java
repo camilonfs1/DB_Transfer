@@ -26,7 +26,7 @@ public class main_ {
 			objects=plain_text.text("../myfile.txt"); 
 			try {
 				Thread.sleep(3000);
-				copiar_nueva(objects,1);
+				copiar_nueva(objects,0);
 				System.out.print("...\n");
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -45,8 +45,11 @@ public class main_ {
 		for (int i= 0; i<= tables_origin .size()-1; i ++) {
 			lines = new ArrayList();
 			lines = sqlServer_connection.read(tables_origin .get(i),flag);
-			psql_connection.write(tables_desti.get(i),lines);	
-		}		
+			psql_connection.write(tables_desti.get(i),lines);
+			
+		}
+		
+		
 	}
 	private static ArrayList divid_origin(ArrayList objects) {//Divide los datos del archivo en nombre y columnas para consultar
 		ArrayList<table> tables = new ArrayList();
@@ -60,16 +63,22 @@ public class main_ {
 			String[] partis2 = ((String) partis[2]).split(",");
 			String[] partis3 = ((String) partis2[0]).split(" ");		
 			
-			String[] parts = ((String) origen[0]).split(" ");	
+			String[] parts = ((String) origen[0]).split("columnasOrigen");	
 			
-			String[] table = parts[0].split(":");			
+			String[] table = parts[0].split(":");	
+			
 			String[] parts2 = parts[1].split(":");				
-			String[] columns = parts2[1].split(",");			
+			String[] columns = parts2[1].split(",");
+			String[] columnsaux = columns[0].split(" ");
+			columns[0] = columnsaux[0];
 			Objtable.setName(table[1]);
 			Objtable.setPrimary(partis3[0]);
 			Objtable.setColumns(columns);
+			
+			
 			tables.add(Objtable);
 		}
+		
 		return tables;
 	}
 	

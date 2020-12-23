@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import model.table;
 
 public class sqlServer_connection {
-	 public static void connectDatabase() {
+	 /*public static void connectDatabase() {
          Connection conn = null;
        try {
            String url = "jdbc:sqlserver://localhost:1433; databaseName=original; user=sa; password=Camilonfs1236;";
@@ -35,7 +35,9 @@ public class sqlServer_connection {
                ex.printStackTrace();
            }
        }
-   }
+   }*/
+	
+
 	 public static ArrayList read(table tables, int flag) {
 			ArrayList<String> lines = new ArrayList();
 			String url = "jdbc:sqlserver://localhost:1433; databaseName=original; user=sa; password=Camilonfs1236;";
@@ -75,7 +77,7 @@ public class sqlServer_connection {
 					lines.add(column);				
 				}
 				if(flag == 0) {
-					System.out.print("Se han copiado "+count+" lineas de la tabla "+table.getName()+"\n");
+					System.out.print("Se han consultado "+count+" lineas de la tabla "+table.getName()+"\n");
 				}
 				
 							
