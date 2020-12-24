@@ -52,12 +52,9 @@ public class sqlServer_connection {
 				}
 			}
 			String query ="";
-			if(flag == 0) {
-				query = "SELECT "+ column +" FROM "+table.getName();
-			}else {
-				query = "SELECT "+ column +" FROM "+table.getName()+" WHERE "+table.getPrimary()+" in (select MAX ("+table.getPrimary()+")"+" FROM "+table.getName()+")";				
-			}
-				
+			
+			query = "SELECT "+ column +" FROM "+table.getName();
+							
 			
 			try(Connection con = DriverManager.getConnection(url);
 					PreparedStatement pst = con.prepareStatement(query);
@@ -79,7 +76,6 @@ public class sqlServer_connection {
 				if(flag == 0) {
 					System.out.print("Se han consultado "+count+" lineas de la tabla "+table.getName()+"\n");
 				}
-				
 							
 			}catch(SQLException ex) {
 				System.out.print(ex);			

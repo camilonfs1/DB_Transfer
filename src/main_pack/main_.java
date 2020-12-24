@@ -26,8 +26,8 @@ public class main_ {
 			objects=plain_text.text("../myfile.txt"); 
 			try {
 				Thread.sleep(3000);
-				copiar_nueva(objects,0);
-				System.out.print("...\n");
+				copiar_nueva(objects,1);                              
+				System.out.print("Consultando ...\n");
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -73,8 +73,7 @@ public class main_ {
 			columns[0] = columnsaux[0];
 			Objtable.setName(table[1]);
 			Objtable.setPrimary(partis3[0]);
-			Objtable.setColumns(columns);
-			
+			Objtable.setColumns(columns);			
 			
 			tables.add(Objtable);
 		}
